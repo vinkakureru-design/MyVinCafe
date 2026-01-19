@@ -1,0 +1,28 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="container d-flex justify-content-center py-5">
+    <div class="industrial-card p-5" style="max-width: 450px; width: 100%;">
+        <h5 class="terminal-header text-center">ENLIST_AS_FAN</h5>
+
+        <form asp-action="Register" method="post">
+            <div class="mb-3">
+                <label class="font-monospace small">> FULL_NAME</label>
+                <input type="text" name="fullName" class="form-control border-industrial" required>
+            </div>
+            <div class="mb-3">
+                <label class="font-monospace small">> USERNAME_ID</label>
+                <input type="text" name="username" class="form-control border-industrial" required>
+            </div>
+            <div class="mb-4">
+                <label class="font-monospace small">> ACCESS_CODE</label>
+                <input type="password" name="password" class="form-control border-industrial" required>
+            </div>
+
+            <button type="submit" class="btn btn-danger w-100 py-2 rounded-0">JOIN FLEET</button>
+        </form>
+    </div>
+</div>

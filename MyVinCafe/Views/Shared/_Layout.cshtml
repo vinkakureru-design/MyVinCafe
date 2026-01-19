@@ -1,0 +1,805 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>FoodMart - Free eCommerce Grocery Store HTML Website Template</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/vendor.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --german-dark: #2f3640; /* Anthracite */
+            --german-red: #c0392b; /* Crimson accent */
+            --german-gray: #7f8c8d; /* Steel gray */
+        }
+
+        /* Navbar Link Styling */
+        .nav-link {
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+
+            .nav-link:hover {
+                background-color: rgba(192, 57, 43, 0.05); /* Soft red tint */
+                border-bottom: 2px solid var(--german-red);
+            }
+
+        /* Teks Utama (Bahasa Jerman) */
+        .main-menu {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 800; /* Lebih tebal */
+            letter-spacing: 2px;
+            color: var(--german-dark);
+            display: block;
+            line-height: 1;
+            font-size: 0.95rem;
+        }
+
+        /* Sub-teks (Bahasa Indonesia) */
+        .sub-menu {
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--german-gray);
+            display: block;
+            text-transform: uppercase; /* Gaya label teknis */
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        /* Efek hover pada sub-menu */
+        .nav-link:hover .sub-menu {
+            color: var(--german-red);
+        }
+
+        /* Logo Styling */
+        .brand-name {
+            font-family: 'Montserrat', sans-serif; /* Pastikan font ini ter-import */
+            font-weight: 900;
+            font-size: 2rem;
+            letter-spacing: -1px;
+            color: var(--german-dark);
+            line-height: 0.8;
+        }
+
+            .brand-name span {
+                color: var(--german-red); /* Memberi aksen merah pada kata kedua */
+                font-weight: 300;
+            }
+
+        .brand-tagline {
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: var(--german-gray);
+            text-transform: uppercase;
+        }
+
+        /* Modifikasi Search Bar agar terlihat lebih Industrial */
+        .search-bar {
+            border: 2px solid #ddd !important;
+            border-radius: 0px !important; /* Kotak tegas, bukan bulat */
+            background: #f8f9fa !important;
+        }
+
+            .search-bar:focus-within {
+                border-color: var(--german-red) !important;
+            }
+
+        /* Mengubah icon bulat menjadi lebih kotak (Utility Icons) */
+        .bg-light.rounded-circle {
+            border-radius: 4px !important; /* Ubah bulat jadi kotak tumpul sedikit */
+            background-color: #eee !important;
+            border: 1px solid #ccc;
+        }
+
+        body {
+            background-image: linear-gradient(rgba(47, 54, 64, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(47, 54, 64, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px; /* Efek kertas grafik/blueprint */
+        }
+
+        /* Menambahkan aksen garis merah di atas navbar */
+        header {
+            border-top: 5px solid var(--german-dark);
+        }
+
+        /* Container Card */
+        .industrial-card {
+            background: #1e2124 !important; /* Warna gelap mesin */
+            border: 1px solid #444;
+            border-top: 4px solid var(--german-red); /* Garis merah atas */
+            color: white;
+            transition: 0.3s;
+        }
+
+            .industrial-card:hover {
+                border-color: var(--german-red);
+                box-shadow: 0 0 15px rgba(192, 57, 43, 0.3);
+            }
+
+        /* Header Card */
+        .card-header-industrial {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            font-size: 0.7rem;
+            font-family: monospace;
+        }
+
+        .badge-ammo {
+            background: var(--german-red);
+            color: white;
+            padding: 2px 6px;
+        }
+
+        /* Bingkai Gambar */
+        .product-frame {
+            background: #2d3436;
+            margin: 10px;
+            padding: 15px;
+            border: 1px dashed #555;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-img {
+            filter: contrast(1.1) brightness(0.9);
+        }
+
+        /* Spec Detail */
+        .product-title-industrial {
+            font-size: 1.1rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #444;
+            padding-bottom: 5px;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            font-size: 0.65rem;
+            font-family: monospace;
+            margin-top: 10px;
+            color: #aaa;
+        }
+
+        .price-section {
+            border: 1px solid #444;
+            padding: 5px 10px;
+            background: rgba(255,255,255,0.05);
+        }
+
+        .price-label {
+            font-size: 0.6rem;
+            display: block;
+            color: #888;
+        }
+
+        .price-value {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        /* Tombol */
+        .btn-order-industrial {
+            background: var(--german-dark);
+            color: white;
+            border: 1px solid var(--german-red);
+            font-size: 0.7rem;
+            font-weight: 700;
+            border-radius: 0;
+        }
+
+            .btn-order-industrial:hover {
+                background: var(--german-red);
+                color: white;
+            }
+
+        .quantity-industrial input {
+            border: 1px solid #444 !important;
+            border-radius: 0;
+            font-family: monospace;
+        }
+
+        /* Mengecilkan judul dan teks agar pas di kartu kecil */
+        .product-title-industrial {
+            font-size: 0.85rem !important; /* Dari 1.1rem ke 0.85rem */
+            margin-top: 10px;
+            height: 40px; /* Menjaga tinggi tetap seragam jika judul panjang */
+            overflow: hidden;
+        }
+
+        /* Mengatur bingkai gambar agar tidak terlalu memakan ruang */
+        .product-frame {
+            margin: 5px !important;
+            padding: 10px !important;
+            height: 150px; /* Membatasi tinggi area gambar */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .product-frame img {
+                max-height: 120px;
+                width: auto;
+                object-fit: contain;
+            }
+
+        /* Mengecilkan area harga */
+        .price-value {
+            font-size: 1rem !important;
+        }
+
+        /* Mengatur tombol agar lebih compact */
+        .btn-order-industrial {
+            padding: 5px 10px !important;
+            font-size: 0.65rem !important;
+        }
+
+        /* Mengatur input jumlah agar tidak terlalu lebar */
+        .quantity-industrial {
+            width: 60px !important;
+        }
+
+        /* Pastikan kartu punya tinggi yang sama (uniform) */
+        .industrial-card {
+            display: flex;
+            flex-direction: column;
+            min-height: 400px; /* Menjaga tinggi kartu agar rapi saat berjejer */
+        }
+
+        /* Ukuran Judul yang pas untuk 4 kolom */
+        .product-title-industrial {
+            font-size: 0.9rem !important;
+            font-weight: 800;
+            min-height: 2.4em; /* Memberi ruang untuk 2 baris teks */
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Frame gambar yang responsif */
+        .product-frame {
+            height: 160px;
+            background: #252a2e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 8px;
+            border: 1px solid #3d444b;
+        }
+
+        .product-img {
+            max-height: 100%;
+            width: auto;
+            object-fit: contain;
+        }
+
+        <style >
+        /* Memberikan ruang napas di sisi kiri dan kanan */
+        .product-grid {
+            padding: 2rem 5% !important;
+        }
+
+        /* Memperbaiki tinggi gambar agar seragam (Solusi Gambar Pecah) */
+        .product-frame {
+            background-color: #252a2e;
+            min-height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px; /* Sedikit lengkungan agar tidak terlalu kaku */
+        }
+
+        /* Mengatur judul agar selalu rata kiri namun rapi */
+        .product-title-industrial {
+            text-align: left;
+            color: #f1f1f1;
+            margin-bottom: 15px;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #1a1d20;
+            color: #eee;
+        }
+
+        .border-top-industrial {
+            border-top: 4px solid var(--german-dark);
+        }
+
+        .terminal-header {
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--german-red);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .footer-link-industrial {
+            color: #888;
+            text-decoration: none;
+            transition: 0.3s;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+            .footer-link-industrial:hover {
+                color: var(--german-red);
+                padding-left: 5px;
+            }
+
+        .btn-terminal-sm {
+            border: 1px solid #444;
+            padding: 5px 10px;
+            color: #888;
+            text-decoration: none;
+            font-size: 0.7rem;
+            font-family: monospace;
+        }
+
+            .btn-terminal-sm:hover {
+                border-color: var(--german-red);
+                color: white;
+            }
+
+        .border-industrial-sm {
+            border: 1px solid #444;
+            padding: 2px;
+        }
+
+        .copyright-text {
+            font-size: 0.65rem;
+            font-family: monospace;
+            color: #555;
+            letter-spacing: 1px;
+        }
+
+        .industrial-header {
+            background: #fff;
+            border-top: 5px solid var(--german-dark);
+        }
+
+        .system-status-bar {
+            font-family: monospace;
+            font-size: 0.75rem;
+            background: #f8f9fa;
+            padding: 8px 20px;
+            border: 1px solid #eee;
+        }
+
+        .status-item .label {
+            color: #888;
+            margin-right: 5px;
+        }
+
+        .status-item .value {
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .navbar-area {
+            background: #fdfdfd;
+        }
+
+        .icon-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+        }
+
+            .icon-btn:hover {
+                background: var(--german-dark);
+                color: white !important;
+            }
+
+        /* Mengatur navbar agar selalu rata tengah */
+        .navbar-nav .nav-link {
+            padding: 10px 0 !important;
+        }   .industrial-header {
+    background: #fff;
+    border-top: 5px solid var(--german-dark);
+}
+
+.system-status-bar {
+    font-family: monospace;
+    font-size: 0.75rem;
+    background: #f8f9fa;
+    padding: 8px 20px;
+    border: 1px solid #eee;
+}
+
+.status-item .label { color: #888; margin-right: 5px; }
+.status-item .value { font-weight: 700; letter-spacing: 1px; }
+
+.navbar-area {
+    background: #fdfdfd;
+}
+
+.icon-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+}
+
+.icon-btn:hover {
+    background: var(--german-dark);
+    color: white !important;
+}
+
+/* Mengatur navbar agar selalu rata tengah */
+.navbar-nav .nav-link {
+    padding: 10px 0 !important;
+}
+
+        /* Penyesuaian Modal agar terlihat Industrial */
+        #loginModal .modal-content {
+            border-radius: 0; /* Kotak kaku khas Jerman */
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        }
+
+        .border-industrial {
+            background-color: rgba(255, 255, 255, 0.05) !important;
+            border: 1px solid #444 !important;
+            border-radius: 0 !important;
+            color: white !important;
+        }
+
+            .border-industrial:focus {
+                border-color: var(--german-red) !important;
+                box-shadow: 0 0 5px var(--german-red);
+            }
+
+        /* Memastikan tulisan brand di modal tetap konsisten */
+        .modal-header .brand-name span {
+            color: var(--german-red);
+            font-weight: 300;
+        }
+    </style>
+    
+</head>
+<body>
+
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <defs>
+            <symbol xmlns="http://www.w3.org/2000/svg" id="link" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M12 19a1 1 0 1 0-1-1a1 1 0 0 0 1 1Zm5 0a1 1 0 1 0-1-1a1 1 0 0 0 1 1Zm0-4a1 1 0 1 0-1-1a1 1 0 0 0 1 1Zm-5 0a1 1 0 1 0-1-1a1 1 0 0 0 1 1Zm7-12h-1V2a1 1 0 0 0-2 0v1H8V2a1 1 0 0 0-2 0v1H5a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V6a3 3 0 0 0-3-3Zm1 17a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-9h16Zm0-11H4V6a1 1 0 0 1 1-1h1v1a1 1 0 0 0 2 0V5h8v1a1 1 0 0 0 2 0V5h1a1 1 0 0 1 1 1ZM7 15a1 1 0 1 0-1-1a1 1 0 0 0 1 1Zm0 4a1 1 0 1 0-1-1a1 1 0 0 0 1 1Z" />
+            </symbol>
+            <symbol xmlns="http://www.w3.org/2000/svg" id="arrow-right" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M17.92 11.62a1 1 0 0 0-.21-.33l-5-5a1 1 0 0 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1 1 0 0 0 0 1.42a1 1 0 0 0 1.42 0l5-5a1 1 0 0 0 .21-.33a1 1 0 0 0 0-.76Z" />
+            </symbol>
+            <symbol xmlns="http://www.w3.org/2000/svg" id="category" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M19 5.5h-6.28l-.32-1a3 3 0 0 0-2.84-2H5a3 3 0 0 0-3 3v13a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-10a3 3 0 0 0-3-3Zm1 13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-13a1 1 0 0 1 1-1h4.56a1 1 0 0 1 .95.68l.54 1.64a1 1 0 0 0 .95.68h7a1 1 0 0 1 1 1Z" />
+            </symbol>
+            <symbol xmlns="http://www.w3.org/2000/svg" id="calendar" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M19 4h-2V3a1 1 0 0 0-2 0v1H9V3a1 1 0 0 0-2 0v1H5a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3Zm1 15a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-7h16Zm0-9H4V7a1 1 0 0 1 1-1h2v1a1 1 0 0 0 2 0V6h6v1a1 1 0 0 0 2 0V6h2a1 1 0 0 1 1 1Z" />
+            </symbol>
+            <symbol xmlns="http://www.w3.org/2000/svg" id="heart" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M20.16 4.61A6.27 6.27 0 0 0 12 4a6.27 6.27 0 0 0-8.16 9.48l7.45 7.45a1 1 0 0 0 1.42 0l7.45-7.45a6.27 6.27 0 0 0 0-8.87Zm-1.41 7.46L12 18.81l-6.75-6.74a4.28 4.28 0 0 1 3-7.3a4.25 4.25 0 0 1 3 1.25a1 1 0 0 0 1.42 0a4.27 4.27 0 0 1 6 6.05Z" />
+            </symbol>
+            <symbol xmlns="http://www.w3.org/2000/svg" id="plus" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M19 11h-6V5a1 1 0 0 0-2 0v6H5a1 1 0 0 0 0 2h6v6a1 1 0 0 0 2 0v-6h6a1 1 0 0 0 0-2Z" />
+            </symbol>
+            <symbol xmlns="http://www.w3.org/2000/svg" id="minus" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M19 11H5a1 1 0 0 0 0 2h14a1 1 0 0 0 0-2Z" />
+            </symbol>
+            <symbol xmlns="http://www.w3.org/2000/svg" id="cart" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M8.5 19a1.5 1.5 0 1 0 1.5 1.5A1.5 1.5 0 0 0 8.5 19ZM19 16H7a1 1 0 0 1 0-2h8.491a3.013 3.013 0 0 0 2.885-2.176l1.585-5.55A1 1 0 0 0 19 5H6.74a3.007 3.007 0 0 0-2.82-2H3a1 1 0 0 0 0 2h.921a1.005 1.005 0 0 1 .962.725l.155.545v.005l1.641 5.742A3 3 0 0 0 7 18h12a1 1 0 0 0 0-2Zm-1.326-9l-1.22 4.274a1.005 1.005 0 0 1-.963.726H8.754l-.255-.892L7.326 7ZM16.5 19a1.5 1.5 0 1 0 1.5 1.5a1.5 1.5 0 0 0-1.5-1.5Z" />
+            </symbol>
+            <symbol xmlns="http://www.w3.org/2000/svg" id="check" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M18.71 7.21a1 1 0 0 0-1.42 0l-7.45 7.46l-3.13-3.14A1 1 0 1 0 5.29 13l3.84 3.84a1 1 0 0 0 1.42 0l8.16-8.16a1 1 0 0 0 0-1.47Z" />
+            </symbol>
+            <symbol xmlns="http://www.w3.org/2000/svg" id="trash" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M10 18a1 1 0 0 0 1-1v-6a1 1 0 0 0-2 0v6a1 1 0 0 0 1 1ZM20 6h-4V5a3 3 0 0 0-3-3h-2a3 3 0 0 0-3 3v1H4a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2ZM10 5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v1h-4Zm7 14a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V8h10Zm-3-1a1 1 0 0 0 1-1v-6a1 1 0 0 0-2 0v6a1 1 0 0 0 1 1Z" />
+            </symbol>
+            <symbol xmlns="http://www.w3.org/2000/svg" id="star-outline" viewBox="0 0 15 15">
+                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M7.5 9.804L5.337 11l.413-2.533L4 6.674l2.418-.37L7.5 4l1.082 2.304l2.418.37l-1.75 1.793L9.663 11L7.5 9.804Z" />
+            </symbol>
+            <symbol xmlns="http://www.w3.org/2000/svg" id="star-solid" viewBox="0 0 15 15">
+                <path fill="currentColor" d="M7.953 3.788a.5.5 0 0 0-.906 0L6.08 5.85l-2.154.33a.5.5 0 0 0-.283.843l1.574 1.613l-.373 2.284a.5.5 0 0 0 .736.518l1.92-1.063l1.921 1.063a.5.5 0 0 0 .736-.519l-.373-2.283l1.574-1.613a.5.5 0 0 0-.283-.844L8.921 5.85l-.968-2.062Z" />
+            </symbol>
+            <symbol xmlns="http://www.w3.org/2000/svg" id="search" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z" />
+            </symbol>
+            <symbol xmlns="http://www.w3.org/2000/svg" id="user" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M15.71 12.71a6 6 0 1 0-7.42 0a10 10 0 0 0-6.22 8.18a1 1 0 0 0 2 .22a8 8 0 0 1 15.9 0a1 1 0 0 0 1 .89h.11a1 1 0 0 0 .88-1.1a10 10 0 0 0-6.25-8.19ZM12 12a4 4 0 1 1 4-4a4 4 0 0 1-4 4Z" />
+            </symbol>
+            <symbol xmlns="http://www.w3.org/2000/svg" id="close" viewBox="0 0 15 15">
+                <path fill="currentColor" d="M7.953 3.788a.5.5 0 0 0-.906 0L6.08 5.85l-2.154.33a.5.5 0 0 0-.283.843l1.574 1.613l-.373 2.284a.5.5 0 0 0 .736.518l1.92-1.063l1.921 1.063a.5.5 0 0 0 .736-.519l-.373-2.283l1.574-1.613a.5.5 0 0 0-.283-.844L8.921 5.85l-.968-2.062Z" />
+            </symbol>
+        </defs>
+    </svg>
+
+    <div class="preloader-wrapper">
+        <div class="preloader">
+        </div>
+    </div>
+
+    <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasCart" aria-labelledby="My Cart">
+        <div class="offcanvas-header justify-content-center">
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="order-md-last">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-primary">Your cart</span>
+                    <span class="badge bg-primary rounded-pill">3</span>
+                </h4>
+                <ul class="list-group mb-3">
+                    <li class="list-group-item d-flex justify-content-between lh-sm">
+                        <div>
+                            <h6 class="my-0">Growers cider</h6>
+                            <small class="text-body-secondary">Brief description</small>
+                        </div>
+                        <span class="text-body-secondary">$12</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between lh-sm">
+                        <div>
+                            <h6 class="my-0">Fresh grapes</h6>
+                            <small class="text-body-secondary">Brief description</small>
+                        </div>
+                        <span class="text-body-secondary">$8</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between lh-sm">
+                        <div>
+                            <h6 class="my-0">Heinz tomato ketchup</h6>
+                            <small class="text-body-secondary">Brief description</small>
+                        </div>
+                        <span class="text-body-secondary">$5</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Total (USD)</span>
+                        <strong>$20</strong>
+                    </li>
+                </ul>
+
+                <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasSearch" aria-labelledby="Search">
+        <div class="offcanvas-header justify-content-center">
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="order-md-last">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-primary">Search</span>
+                </h4>
+                <form role="search" action="index.html" method="get" class="d-flex mt-3 gap-0">
+                    <input class="form-control rounded-start rounded-0 bg-light" type="email" placeholder="What are you looking for?" aria-label="What are you looking for?">
+                    <button class="btn btn-dark rounded-end rounded-0" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <header class="industrial-header">
+        <div class="container-fluid px-md-5">
+            <div class="row py-3 align-items-center">
+
+                <div class="col-sm-4 col-lg-3 text-start">
+                    <div class="main-logo">
+                        <a href="/" class="text-decoration-none">
+                            <h1 class="brand-name mb-0">EISEN<span>FLOTTE</span></h1>
+                            <small class="brand-tagline">COMMAND CENTER V.01</small>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 d-none d-lg-block">
+                    <div class="system-status-bar d-flex justify-content-center gap-4">
+                        <div class="status-item">
+                            <span class="label">TEMP:</span> <span class="value text-danger">92°C</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="label">PRESSURE:</span> <span class="value text-warning">OPTIMAL</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="label">LOGS:</span> <span class="value">ACTIVE</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-8 col-lg-3 d-flex justify-content-end align-items-center gap-3">
+                    <ul class="d-flex list-unstyled m-0 gap-2">
+                        <li>
+                            <a href="#" class="btn-terminal-sm icon-btn" data-bs-toggle="modal" data-bs-target="#loginModal">
+                                <svg width="20" height="20" viewBox="0 0 24 24"><use xlink:href="#user"></use></svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="btn-terminal-sm icon-btn" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart">
+                                <svg width="20" height="20" viewBox="0 0 24 24"><use xlink:href="#cart"></use></svg>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="navbar-area border-top border-bottom">
+            <div class="container-fluid px-md-5">
+                <nav class="navbar navbar-expand-lg py-0">
+                    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                        <ul class="navbar-nav menu-list gap-md-4">
+                            <li class="nav-item">
+                                <a href="#coffee" class="nav-link">
+                                    <span class="main-menu">KAFFEE</span>
+                                    <span class="sub-menu">Kopi & Espresso</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#drinks" class="nav-link">
+                                    <span class="main-menu">GETRÄNKE</span>
+                                    <span class="sub-menu">Non-Kopi</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#sweets" class="nav-link">
+                                    <span class="main-menu">GEBÄCK</span>
+                                    <span class="sub-menu">Roti & Kue</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+
+
+    @RenderBody()
+
+
+
+    
+   
+        <footer class="py-5 border-top-industrial">
+            <div class="container-fluid px-md-5">
+                <div class="row g-5">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="footer-terminal">
+                            <h2 class="brand-name mb-0 text-white">EISEN<span>FLOTTE</span></h2>
+                            <p class="text-muted small mt-3 font-monospace">
+                                > TERMINAL ID: EF-HQ-JKT<br>
+                                > STATUS: ONLINE<br>
+                                > LOCATION: COORDINATES 6.1751° S, 106.8272° E
+                            </p>
+                            <div class="social-links mt-4">
+                                <ul class="d-flex list-unstyled gap-2">
+                                    <li><a href="#" class="btn-terminal-sm">FB</a></li>
+                                    <li><a href="#" class="btn-terminal-sm">IG</a></li>
+                                    <li><a href="#" class="btn-terminal-sm">TW</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2 col-6">
+                        <h5 class="terminal-header">RESOURCES</h5>
+                        <ul class="list-unstyled small font-monospace">
+                            <li><a href="#" class="footer-link-industrial">> ABOUT_US</a></li>
+                            <li><a href="#" class="footer-link-industrial">> CAREERS</a></li>
+                            <li><a href="#" class="footer-link-industrial">> PROTOCOLS</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-2 col-6">
+                        <h5 class="terminal-header">SUPPORT</h5>
+                        <ul class="list-unstyled small font-monospace">
+                            <li><a href="#" class="footer-link-industrial">> HELP_DESK</a></li>
+                            <li><a href="#" class="footer-link-industrial">> CONTACT</a></li>
+                            <li><a href="#" class="footer-link-industrial">> PRIVACY</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <h5 class="terminal-header">SUBSCRIPTION</h5>
+                        <p class="small text-muted mb-3 font-monospace">Join the fleet for supply updates.</p>
+                        <form class="d-flex gap-0 border-industrial-sm">
+                            <input class="form-control bg-transparent border-0 text-white rounded-0 small" type="email" placeholder="EMAIL_ADDRESS...">
+                            <button class="btn btn-danger rounded-0 px-3" type="submit">SUBMIT</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <div id="footer-bottom" class="bg-dark py-3">
+            <div class="container-fluid px-md-5">
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-center text-md-start">
+                        <p class="copyright-text mb-0">© 2026 EISENFLOTTE INDUSTRIAL COFFEE. ALL SYSTEMS OPERATIONAL.</p>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <p class="copyright-text mb-0">DESIGN_AUTH: GEMINI_CAPABLE_PARTNER</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/script.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+
+</body>
+
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content industrial-card border-0">
+            <div class="modal-header border-bottom border-secondary p-4">
+                <h5 class="modal-title brand-name fs-4" id="loginModalLabel">EISEN<span>FLOTTE</span></h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <div class="text-center mb-4">
+                    <small class="text-muted font-monospace">> IDENTITY_VERIFICATION_REQUIRED</small>
+                </div>
+
+                <form action="/Auth/Login" method="post">
+                    @if (TempData["Error"] != null)
+                    {
+                        <div class="alert alert-danger py-2 mb-3 rounded-0 font-monospace" style="font-size: 0.7rem;">
+                            > @TempData["Error"]
+                        </div>
+                    }
+
+                    <div class="mb-3">
+                        <label class="font-monospace small mb-1">> USERNAME_ID</label>
+                        <input type="text" name="username" class="form-control border-industrial" required>
+                    </div>
+                    ...
+                </form>
+            </div>
+            <div class="modal-footer border-top border-secondary justify-content-center">
+                <p class="small text-muted mb-0">Belum terdaftar? <a href="/Auth/Register" class="text-danger text-decoration-none">ENLIST_NOW</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (TempData["Error"] != null)
+{
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Memastikan modal login terbuka otomatis jika ada pesan error
+            var loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+            loginModal.show();
+        });
+    </script>
+}
+
+</html>
