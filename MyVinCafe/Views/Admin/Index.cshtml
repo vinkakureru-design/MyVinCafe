@@ -4,3 +4,103 @@
 @{
 }
 
+@{
+    Layout = "_Layout";
+}
+
+<div class="container-fluid py-4 font-monospace text-white">
+    <div class="d-flex justify-content-between align-items-center mb-4 border-bottom border-danger pb-2">
+        <h2 class="m-0 text-uppercase tracking-wider">> ADMIN_CONTROL_ROOM</h2>
+        <span class="badge bg-danger">SYSTEM_ONLINE</span>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+            <div class="card bg-dark border-secondary h-100 shadow-sm">
+                <div class="card-header border-danger bg-transparent">
+                    <small class="text-danger fw-bold">RESOURCES_RADAR</small>
+                </div>
+                <div class="card-body">
+                    <canvas id="resourceRadar"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-8">
+            <div class="card bg-dark border-secondary h-100 shadow-sm">
+                <div class="card-header border-danger bg-transparent">
+                    <small class="text-danger fw-bold">ORDER_TIMELINE_FLUX</small>
+                </div>
+                <div class="card-body">
+                    <canvas id="orderChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 mt-4">
+            <div class="row text-center">
+                <div class="col-md-3">
+                    <div class="p-3 border border-secondary bg-opacity-10 bg-white">
+                        <div class="small text-secondary">ACTIVE_MISSIONS</div>
+                        <div class="h3 text-danger">12</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="p-3 border border-secondary bg-opacity-10 bg-white">
+                        <div class="small text-secondary">FUEL_RESERVES</div>
+                        <div class="h3 text-danger">85%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Resource Radar Chart
+        const radarCtx = document.getElementById('resourceRadar').getContext('2d');
+        new Chart(radarCtx, {
+            type: 'radar',
+            data: {
+                labels: ['Biji Kopi', 'Susu', 'Gula', 'Air', 'Cokelat'],
+                datasets: [{
+                    label: 'Current Stock',
+                    data: [80, 60, 90, 100, 45],
+                    backgroundColor: 'rgba(192, 57, 43, 0.2)',
+                    borderColor: '#c0392b',
+                    pointBackgroundColor: '#fff'
+                }]
+            },
+            options: {
+                scales: {
+                    r: { grid: { color: '#333' }, angleLines: { color: '#333' } }
+                }
+            }
+        });
+
+        // Order Line Chart
+        const lineCtx = document.getElementById('orderChart').getContext('2d');
+        new Chart(lineCtx, {
+            type: 'line',
+            data: {
+                labels: ['0800', '1000', '1200', '1400', '1600'],
+                datasets: [{
+                    label: 'Tactical Sales',
+                    data: [12, 19, 35, 25, 40],
+                    borderColor: '#c0392b',
+                    tension: 0.4,
+                    fill: true,
+                    backgroundColor: 'rgba(192, 57, 43, 0.1)'
+                }]
+            },
+            options: {
+                scales: {
+                    x: { grid: { color: '#333' } },
+                    y: { grid: { color: '#333' } }
+                }
+            }
+        });
+    </script>
+}
