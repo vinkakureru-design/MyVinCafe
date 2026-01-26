@@ -1,0 +1,85 @@
+﻿@* Views/Shared/_AuthModalPartial.cshtml *@
+
+<div class="modal fade" id="authModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content industrial-card border-0 shadow-lg">
+            <div class="modal-body p-0">
+                <ul class="nav nav-tabs border-0" id="authTab" role="tablist" style="background: #1a1d20;">
+                    <li class="nav-item flex-fill">
+                        <button class="nav-link active w-100 rounded-0 border-0 py-3 font-monospace small text-white"
+                                id="login-tab" data-bs-toggle="tab" data-bs-target="#login-panel" type="button">
+                            > ACCESS_LOG
+                        </button>
+                    </li>
+                    <li class="nav-item flex-fill">
+                        <button class="nav-link w-100 rounded-0 border-0 py-3 font-monospace small text-white"
+                                id="register-tab" data-bs-toggle="tab" data-bs-target="#register-panel" type="button">
+                            > ENLIST_FLEET
+                        </button>
+                    </li>
+                </ul>
+
+                <div class="tab-content p-4" style="background: #1e2124;">
+                    <div class="tab-pane fade show active" id="login-panel">
+                        <form action="/Auth/Login" method="post">
+                            @if (TempData["Error"] != null)
+                            {
+                                <div class="alert alert-danger py-2 mb-3 rounded-0 font-monospace small"
+                                     style="background: rgba(192, 57, 43, 0.2); border: 1px solid #c0392b; color: #ff9999;">
+                                    > ERROR: @TempData["Error"]
+                                </div>
+                            }
+                            <div class="mb-3">
+                                <label class="font-monospace small mb-1 text-secondary">> USER_ID</label>
+                                <input type="text" name="username" class="form-control border-industrial text-white"
+                                       required style="background: rgba(255,255,255,0.05);">
+                            </div>
+                            <div class="mb-4">
+                                <label class="font-monospace small mb-1 text-secondary">> SECURITY_CODE</label>
+                                <input type="password" name="password" class="form-control border-industrial text-white"
+                                       required style="background: rgba(255,255,255,0.05);">
+                            </div>
+                            <button type="submit" class="btn btn-order-industrial w-100 py-2 fw-bold">INITIATE_LOGIN</button>
+                        </form>
+                    </div>
+
+                    <div class="tab-pane fade" id="register-panel">
+                        <form action="/Auth/Register" method="post">
+                            <div class="mb-3">
+                                <label class="font-monospace small mb-1 text-secondary">> FULL_NAME</label>
+                                <input type="text" name="fullName" class="form-control border-industrial text-white"
+                                       required style="background: rgba(255,255,255,0.05);">
+                            </div>
+                            <div class="mb-3">
+                                <label class="font-monospace small mb-1 text-secondary">> ASSIGN_ID</label>
+                                <input type="text" name="username" class="form-control border-industrial text-white"
+                                       required style="background: rgba(255,255,255,0.05);">
+                            </div>
+                            <div class="mb-4">
+                                <label class="font-monospace small mb-1 text-secondary">> ACCESS_PASS</label>
+                                <input type="password" name="password" class="form-control border-industrial text-white"
+                                       required style="background: rgba(255,255,255,0.05);">
+                            </div>
+                            <button type="submit" class="btn btn-danger w-100 py-2 rounded-0 fw-bold border-0"
+                                    style="background: #c0392b;">
+                                CONFIRM_ENLISTMENT
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="p-1" style="background: repeating-linear-gradient(45deg, #c0392b, #c0392b 10px, #1e2124 10px, #1e2124 20px);"></div>
+        </div>
+    </div>
+</div>
+
+@* Script untuk otomatis buka modal jika ada error *@
+@if (TempData["Error"] != null)
+{
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var authModal = new bootstrap.Modal(document.getElementById('authModal'));
+            authModal.show();
+        });
+    </script>
+}
