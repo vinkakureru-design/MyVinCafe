@@ -1,33 +1,14 @@
-﻿<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content industrial-card border-0">
-            <div class="modal-header border-bottom border-secondary p-4">
-                <h5 class="modal-title brand-name fs-4" id="loginModalLabel">EISEN<span>FLOTTE</span></h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body p-4">
-                <div class="text-center mb-4">
-                    <small class="text-muted font-monospace">> IDENTITY_VERIFICATION_REQUIRED</small>
-                </div>
+﻿protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    base.OnModelCreating(modelBuilder);
 
-                <form action="/Auth/Login" method="post">
-                    @if (TempData["Error"] != null)
-                    {
-                        <div class="alert alert-danger py-2 mb-3 rounded-0 font-monospace" style="font-size: 0.7rem;">
-                            > @TempData["Error"]
-                        </div>
-                    }
-
-                    <div class="mb-3">
-                        <label class="font-monospace small mb-1">> USERNAME_ID</label>
-                        <input type="text" name="username" class="form-control border-industrial" required>
-                    </div>
-                    ...
-                </form>
-            </div>
-            <div class="modal-footer border-top border-secondary justify-content-center">
-                <p class="small text-muted mb-0">Belum terdaftar? <a href="/Auth/Register" class="text-danger text-decoration-none">ENLIST_NOW</a></p>
-            </div>
-        </div>
-    </div>
-</div>
+    // Otomatis buat data Admin saat migration
+    modelBuilder.Entity<User>().HasData(new User
+    {
+        Id = 1,
+        FullName = "Administrator Vinka",
+        Username = "admin",
+        Password = "123", // Saran: Gunakan password yang lebih kuat nanti
+        Role = "Admin"
+    });
+}

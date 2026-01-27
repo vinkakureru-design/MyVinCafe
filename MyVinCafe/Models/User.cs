@@ -4,11 +4,11 @@ namespace MyVinCafe.Models
 {
     public class User
     {
-        [Key]
         public int Id { get; set; }
-        public string FullName { get; set; } = "";
-        public string Username { get; set; } = "";
-        public string Password { get; set; } = ""; // Nanti simpan password di sini
-        public string Role { get; set; } = "Customer"; // Admin, Kasir, Owner, Supervisor, Customer
+        public string FullName { get; set; } = string.Empty;
+        public string Username { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
+        // Tambahkan Role: "Admin" atau "Member" atau lainnya
+        public string Role { get; set; } = "Member"; //defaultnya, kalo mao punya role selain member kerja dulu di cafe my /(-3-)/
     }
 }

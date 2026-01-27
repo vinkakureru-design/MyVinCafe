@@ -10,22 +10,28 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Gunakan Cookie Authentication
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+// Authentication menggunakan Cookie
+builder.Services.AddAuthentication
+    (CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
-        options.LoginPath = "/Auth/Login"; // Jika belum login, lari ke sini
-        options.AccessDeniedPath = "/Auth/AccessDenied";
+        options.LoginPath = "/Home/Index";
+        options.AccessDeniedPath = "/Home/Index";
     });
 
 var app = builder.Build();
 
+
+
 app.UseStaticFiles();
 app.UseRouting();
 
-app.UseAuthentication(); // Wajib ada
-app.UseAuthorization();  // Wajib ada
+// middleware
+app.UseAuthentication(); // wajib ada sebelum UseAuthroization
+app.UseAuthorization();
 
-app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

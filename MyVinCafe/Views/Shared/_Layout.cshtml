@@ -500,6 +500,17 @@
             color: #c0392b !important;
             border-bottom: 3px solid #c0392b !important;
         }
+
+        .border-industrial {
+            border: 1px solid #c0392b !important;
+            background-color: #1e2124 !important;
+            border-radius: 0;
+        }
+
+        .dropdown-item:hover {
+            background-color: #c0392b;
+            color: white;
+        }
     </style>
     
 </head>
@@ -626,7 +637,7 @@
 
                 <div class="col-sm-4 col-lg-3 text-start">
                     <div class="main-logo">
-                        <a href="/" class="text-decoration-none">
+                        <a asp-controller="Home" asp-action="Index" class="text-decoration-none">
                             <h1 class="brand-name mb-0">EISEN<span>FLOTTE</span></h1>
                             <small class="brand-tagline">COMMAND CENTER V.01</small>
                         </a>
@@ -648,12 +659,37 @@
                 </div>
 
                 <div class="col-sm-8 col-lg-3 d-flex justify-content-end align-items-center gap-3">
-                    <ul class="d-flex list-unstyled m-0 gap-2">
-                        <li>
-                            <a href="#" class="btn-terminal-sm icon-btn" data-bs-toggle="modal" data-bs-target="#authModal">
-                                <svg width="20" height="20" viewBox="0 0 24 24"><use xlink:href="#user"></use></svg>
-                            </a>
-                        </li>
+                    <ul class="d-flex list-unstyled m-0 gap-2 align-items-center">
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="btn-terminal-sm dropdown-toggle text-decoration-none font-monospace" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="min-width: 150px; text-align: right;">
+                                    > @User.FindFirst("FullName")?.Value.ToUpper()
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark border-industrial shadow" aria-labelledby="userDropdown">
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        <li><a class="dropdown-item small font-monospace" asp-controller="Admin" asp-action="Index">/ADMIN_PANEL</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                    }
+                                    <li>
+                                        <form asp-controller="Auth" asp-action="Logout" method="post">
+                                            <button type="submit" class="dropdown-item small text-danger font-monospace">/TERMINATE_SESSION</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a href="#" class="btn-terminal-sm icon-btn" data-bs-toggle="modal" data-bs-target="#authModal" title="LOGIN">
+                                    <svg width="20" height="20" viewBox="0 0 24 24"><use xlink:href="#user"></use></svg>
+                                </a>
+                            </li>
+                        }
+
                         <li>
                             <a href="#" class="btn-terminal-sm icon-btn" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart">
                                 <svg width="20" height="20" viewBox="0 0 24 24"><use xlink:href="#cart"></use></svg>
