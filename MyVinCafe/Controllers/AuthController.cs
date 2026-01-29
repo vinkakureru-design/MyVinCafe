@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MyVinCafe.Data;
 using MyVinCafe.Models;
@@ -24,7 +23,7 @@ namespace MyVinCafe.Controllers
         public async Task<IActionResult> Register(string fullName, string username, string password) // membuat task/tugas Register yang berisi nama, username. dan password
         {
             //Cek apakah username sudah ada
-            if (await _context.Users.AnyAsync(u => u.Username == username)) // logika buat nyari kalau username sama kirim pesan error
+            if (await _context.Users.AnyAsync(u => u.Username == username)) // logika buat nyari kalau username ada yang sama di database lalu kirim pesan error
             {
                 TempData["Error"] = "username sudah digunakan";
                 return RedirectToAction("Index", "Home");
@@ -34,12 +33,12 @@ namespace MyVinCafe.Controllers
             {
                 FullName = fullName,
                 Username = username,
-                Password = password, //Kalau ada kesempatan belajar Hashing (Bcrypt) atau ubah jadi kode acak
+                Password = password, // PESAN: Kalau ada kesempatan belajar Hashing (Bcrypt) atau ubah jadi kode acak
                 Role = "Member" //Defaultnya member
             };
 
             _context.Users.Add(newUser); // minta database tambah user baru
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(); // simpan perubahan
 
             return RedirectToAction("Index", "Home"); // direct halaman ke /home/indx
         }
@@ -49,7 +48,7 @@ namespace MyVinCafe.Controllers
         [HttpPost]
 
 
-        public async Task<IActionResult> Login(string username, string password)//buat tugas login yang isinya username dan password (username buat kode unik yang bisa dibedain dari semua orang)
+        public async Task<IActionResult> Login(string username, string password)//buat tugas login yang isinya username dan password dan meminta dari models (username buat kode unik yang bisa dibedain dari semua orang)
         {
             var user = await _context.Users
                 .FirstOrDefaultAsync(u => u.Username == username && u.Password == password); // logika AND, kalo dua-duanya bener ya benerlah, kalo satu salah ya error
@@ -60,7 +59,7 @@ namespace MyVinCafe.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            // Membuat identitas (CLaims)??? apa jir logika Claims???
+            // Membuat identitas (CLaims)? apa jir logika Claims??? belajar lagi ( > /\ < )
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, user.Username),

@@ -15,5 +15,10 @@ namespace MyVinCafe.Controllers
         {
             return View();
         }
+
+        public IActionResult Kaffe()
+        {
+            return View();
+        }
     }
 }
