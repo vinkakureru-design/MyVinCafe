@@ -670,8 +670,23 @@
                                 <ul class="dropdown-menu dropdown-menu-dark border-industrial shadow" aria-labelledby="userDropdown">
                                     @if (User.IsInRole("Admin"))
                                     {
-                                        <li><a class="dropdown-item small font-monospace" asp-controller="Admin" asp-action="Index">/ADMIN_PANEL</a></li>
+                                        <li><a class="dropdown-item small font-monospace" asp-controller="Admin" asp-action="Index">ADMIN PANEL</a></li>
                                         <li><hr class="dropdown-divider"></li>
+                                        @if (User.IsInRole("Kasir") || User.IsInRole("Admin"))
+                                        {
+                                            <li><a class="dropdown-item small font-monospace" asp-controller="Supervisor" asp-action="Index">KASIR PANEL</a></li>
+                                            <li><hr class="dropdown-divider"></li>
+                                        }
+                                        @if (User.IsInRole("Supervisor") || User.IsInRole("Admin"))
+                                        {
+                                            <li><a class="dropdown-item small font-monospace" asp-controller="Supervisor" asp-action="Index">SUPERVISORPANEL</a></li>
+                                            <li><hr class="dropdown-divider"></li>
+                                        }
+                                        @if (User.IsInRole("Owner") || User.IsInRole("Admin"))
+                                        {
+                                            <li><a class="dropdown-item small font-monospace" asp-controller="Supervisor" asp-action="Index">OWNER PANEL</a></li>
+                                            <li><hr class="dropdown-divider"></li>
+                                        }
                                     }
                                     <li>
                                         <form asp-controller="Auth" asp-action="Logout" method="post">
@@ -724,6 +739,15 @@
                                     <span class="sub-menu">Roti & Kue</span>
                                 </a>
                             </li>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item">
+                                    <a asp-area="" asp-controller="Admin" asp-action="AddMenu" class="nav-link">
+                                        <span class="main-menu">ADD MENU</span>
+                                        <span class="sub-menu">Dummy CRUD</span>
+                                    </a>
+                                </li>
+                            }
                         </ul>
                     </div>
                 </nav>
@@ -763,7 +787,7 @@
                     <div class="col-md-2 col-6">
                         <h5 class="terminal-header">RESOURCES</h5>
                         <ul class="list-unstyled small font-monospace">
-                            <li><a href="#" class="footer-link-industrial">> ABOUT_US</a></li>
+                            <li><a href="#" class="footer-link-industrial">> ABOUT US</a></li>
                             <li><a href="#" class="footer-link-industrial">> CAREERS</a></li>
                             <li><a href="#" class="footer-link-industrial">> PROTOCOLS</a></li>
                         </ul>
@@ -772,7 +796,7 @@
                     <div class="col-md-2 col-6">
                         <h5 class="terminal-header">SUPPORT</h5>
                         <ul class="list-unstyled small font-monospace">
-                            <li><a href="#" class="footer-link-industrial">> HELP_DESK</a></li>
+                            <li><a href="#" class="footer-link-industrial">> HELP DESK</a></li>
                             <li><a href="#" class="footer-link-industrial">> CONTACT</a></li>
                             <li><a href="#" class="footer-link-industrial">> PRIVACY</a></li>
                         </ul>

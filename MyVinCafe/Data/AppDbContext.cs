@@ -10,7 +10,6 @@ namespace MyVinCafe.Data
 
         public DbSet<User> Users { get; set; } // Tabel User kita
 
-
         // kalo mau buat admin tapi males buat manual di database/SSsms
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -20,7 +19,7 @@ namespace MyVinCafe.Data
             {
                 Id = 1,
                 FullName = "Admin Vinku",
-                Username = "Admin",
+                Username = "Admin-Vinku",
                 Password = "123",
                 Role = "Admin"
             });
