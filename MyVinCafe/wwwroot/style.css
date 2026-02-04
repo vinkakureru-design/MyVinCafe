@@ -720,3 +720,39 @@ h1,h2,h3,h4,h5,h6 {
     height: 740px;
   }
 }
+
+/* Custom Military Theme Overrides */
+:root {
+    --mil-grey: #4b5320; /* Army Green / Grey */
+    --mil-dark: #1a1a1a;
+    --mil-gold: #d4af37;
+}
+
+body {
+    background-color: #f0f0f0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card-military {
+    border-left: 5px solid var(--mil-dark);
+    border-radius: 0; /* Military style is usually sharp/boxy */
+    transition: transform 0.2s;
+    background: #ffffff;
+}
+
+    .card-military:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+.bg-military {
+    background-color: var(--mil-dark) !important;
+    color: var(--mil-gold) !important;
+}
+
+.btn-mil-action {
+    border-radius: 0;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.8rem;
+}

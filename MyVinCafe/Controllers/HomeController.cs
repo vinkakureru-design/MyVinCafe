@@ -23,9 +23,16 @@ namespace MyVinCafe.Controllers
             return View();
         }
 
-        public IActionResult Kaffe()
+        // Method untuk halaman Kaffee (Kopi)
+        public async Task<IActionResult> Kaffe()
         {
-            return View();
+            // Mengambil data dari konteks database 
+            // Filter hanya yang kategorinya 'Coffee'
+            var kaffeeMenu = await _context.MenuCafe
+                .Where(m => m.Kategori == "Kopi")
+                .ToListAsync();
+
+            return View(kaffeeMenu);
         }
     }
 }

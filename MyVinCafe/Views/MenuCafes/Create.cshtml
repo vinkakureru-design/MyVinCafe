@@ -1,0 +1,79 @@
+﻿@model MyVinCafe.Models.MenuCafe
+
+@{
+    ViewData["Title"] = "Pendaftaran Inventaris Menu";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0 rounded-0">
+                <div class="card-header bg-military p-3">
+                    <h3 class="mb-0 text-uppercase fw-bold" style="letter-spacing: 3px;">
+                        <i class="bi bi-shield-plus"></i> Form Input Inventaris
+                    </h3>
+                </div>
+                <div class="card-body p-4 bg-light border border-top-0 border-dark">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <div class="row mb-4">
+                            <div class="col-md-7">
+                                <label asp-for="NamaMenu" class="fw-bold text-uppercase small text-muted">Nama Operasional Menu</label>
+                                <input asp-for="NamaMenu" class="form-control rounded-0 border-dark border-2" placeholder="Masukkan Nama Menu..." />
+                                <span asp-validation-for="NamaMenu" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-5">
+                                <label asp-for="Kategori" class="fw-bold text-uppercase small text-muted">Klasifikasi Kategori</label>
+                                <select asp-for="Kategori" class="form-select rounded-0 border-dark border-2">
+                                    <option value="Kopi">kopi & Espresso (KAFFEE)</option>
+                                    <option value="Non-Kopi">Non-Coffee (GETRÄNKE)</option>
+                                    <option value="Roti-Kue">Roti & Kue (GEBÄCK)</option>
+                                </select>
+                                <span asp-validation-for="Kategori" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label asp-for="Deskripsi" class="fw-bold text-uppercase small text-muted">Spesifikasi Detail (Opsional)</label>
+                            <textarea asp-for="Deskripsi" class="form-control rounded-0 border-dark border-2" rows="3" placeholder="Jelaskan detail taktis menu di sini..."></textarea>
+                            <span asp-validation-for="Deskripsi" class="text-danger"></span>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label asp-for="Harga" class="fw-bold text-uppercase small text-muted">Nilai Ekonomi (IDR)</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-dark text-white rounded-0 border-dark">Rp</span>
+                                    <input asp-for="Harga" class="form-control rounded-0 border-dark border-2" type="number" />
+                                </div>
+                                <span asp-validation-for="Harga" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="Diskon" class="fw-bold text-uppercase small text-muted">Potongan Harga (%)</label>
+                                <input asp-for="Diskon" class="form-control rounded-0 border-dark border-2" type="number" value="0" />
+                                <span asp-validation-for="Diskon" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="border-top border-dark pt-4 d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-outline-dark btn-mil-action px-4 py-2">
+                                <i class="bi bi-chevron-left"></i> Batal / Kembali
+                            </a>
+                            <button type="submit" class="btn btn-dark btn-mil-action px-5 py-2">
+                                <i class="bi bi-save"></i> Daftarkan Inventaris
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <p class="text-center mt-3 text-muted small text-uppercase fw-bold">MyVinCafe Headquarters - 2026</p>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,42 @@
+﻿@model MyVinCafe.Models.MenuCafe
+
+@{
+    ViewData["Title"] = "Konfirmasi Penghapusan";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card border-danger rounded-0 shadow-lg">
+                <div class="card-header bg-danger text-white text-center py-3">
+                    <h4 class="mb-0 text-uppercase fw-bold">Peringatan: Penghapusan Data!</h4>
+                </div>
+                <div class="card-body bg-light">
+                    <p class="text-center">Apakah Anda yakin ingin menghapus item ini dari inventaris markas?</p>
+                    <table class="table table-bordered border-dark mt-3 small text-uppercase">
+                        <tr>
+                            <th class="bg-secondary text-white w-40">Nama Menu</th>
+                            <td>@Model.NamaMenu</td>
+                        </tr>
+                        <tr>
+                            <th class="bg-secondary text-white">Kategori</th>
+                            <td>@Model.Kategori</td>
+                        </tr>
+                    </table>
+
+                    <div class="d-flex justify-content-center mt-4 gap-2">
+                        <form asp-action="Delete">
+                            <input type="hidden" asp-for="Id" />
+                            <button type="submit" class="btn btn-danger btn-mil-action px-4">
+                                <i class="bi bi-exced"></i> YA, HAPUS SEKARANG
+                            </button>
+                        </form>
+                        <a asp-action="Index" class="btn btn-dark btn-mil-action px-4">
+                            <i class="bi bi-x-circle"></i> BATALKAN
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

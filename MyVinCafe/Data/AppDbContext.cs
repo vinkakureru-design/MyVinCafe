@@ -20,9 +20,11 @@ namespace MyVinCafe.Data
                 Id = 1,
                 FullName = "Admin Vinku",
                 Username = "Admin-Vinku",
-                Password = "123",
+                Password = "Admin123",
                 Role = "Admin"
             });
         }
+    //defultnya gini lah
+public DbSet<MyVinCafe.Models.MenuCafe> MenuCafe { get; set; } = default!;
     }
 }
