@@ -704,10 +704,15 @@
                                 </a>
                             </li>
                         }
-
-                        <li>
-                            <a href="#" class="btn-terminal-sm icon-btn" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart">
-                                <svg width="20" height="20" viewBox="0 0 24 24"><use xlink:href="#cart"></use></svg>
+                        <li class="nav-item ms-lg-3">
+                            <a asp-controller="Home" asp-action="Keranjang" class="btn btn-dark btn-mil-action position-relative">
+                                <i class="bi bi-cart3"></i> Keranjang Pesan
+                                @if (Context.Session.GetString("Keranjang") != null)
+                                {
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                        !
+                                    </span>
+                                }
                             </a>
                         </li>
                     </ul>
@@ -739,6 +744,7 @@
                                     <span class="sub-menu">Roti & Kue</span>
                                 </a>
                             </li>
+                            
                             @if (User.IsInRole("Admin"))
                             {
                                 <li class="nav-item">
@@ -763,7 +769,7 @@
 
     
    
-        <footer class="py-5 border-top-industrial">
+        @* <footer class="py-5 border-top-industrial">
             <div class="container-fluid px-md-5">
                 <div class="row g-5">
                     <div class="col-lg-4 col-md-6">
@@ -812,19 +818,9 @@
                     </div>
                 </div>
             </div>
-        </footer>
+        </footer> *@
 
-        <div id="footer-bottom" class="bg-dark py-3">
-            <div class="container-fluid px-md-5">
-                <div class="row align-items-center">
-                    <div class="col-md-6 text-center text-md-start">
-                        <p class="copyright-text mb-0">© 2026 EISENFLOTTE INDUSTRIAL COFFEE. ALL SYSTEMS OPERATIONAL.</p>
-                    </div>
-                    <div class="col-md-6 text-center text-md-end">
-                        <p class="copyright-text mb-0">DESIGN_AUTH: GEMINI_CAPABLE_PARTNER</p>
-                    </div>
-                </div>
-            </div>
+        
         </div>
     <script src="js/jquery-1.11.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>

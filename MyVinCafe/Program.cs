@@ -19,10 +19,18 @@ builder.Services.AddAuthentication
         options.AccessDeniedPath = "/Home/Index";
     });
 
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // atur wakti sekitaran 30 menit otomatis hilang
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
 var app = builder.Build();
 
 
-
+app.UseSession();
 app.UseStaticFiles();
 app.UseRouting();
 

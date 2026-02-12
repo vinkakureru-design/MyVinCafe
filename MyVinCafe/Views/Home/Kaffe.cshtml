@@ -24,7 +24,10 @@
                         </div>
                     </div>
                     <div class="card-footer bg-dark border-0">
-                        <button class="btn btn-warning btn-sm w-100 fw-bold">PESAN SEKARANG</button>
+                        <a asp-controller="Home" asp-action="Keranjang" asp-route-id="@item.Id"
+                           class="btn btn-warning btn-sm w-100 fw-bold">
+                            <i class="bi bi-cart-plus"></i> PESAN SEKARANG
+                        </a>    
                     </div>
                 </div>
             </div>
